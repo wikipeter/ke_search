@@ -1400,6 +1400,7 @@ class tx_kesearch_lib extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 				$linkconf['addQueryString'] = 1;
 				$linkconf['addQueryString.']['exclude'] = 'id';
 				$linkconf['additionalParams'] = '&tx_kesearch_pi1[page]=' . intval($i);
+				$linkconf['returnLast'] = 'url';
 				$filterArray = $this->filters->getFilters();
 
 				if (is_array($this->piVars['filter'])) {
@@ -1413,7 +1414,8 @@ class tx_kesearch_lib extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 				}
 
 				if ($this->piVars['page'] == $i) $linkconf['ATagParams'] = 'class="current" ';
-				$tempContent .= $this->cObj->typoLink($i, $linkconf) . ' ';
+//				$tempContent .= $this->cObj->typoLink($i, $linkconf) . ' ';
+				$tempContent[$i] = $this->cObj->typoLink($i, $linkconf);
 			}
 		}
 
@@ -1431,6 +1433,7 @@ class tx_kesearch_lib extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			$linkconf['addQueryString'] = 1;
 			$linkconf['additionalParams'] = '&tx_kesearch_pi1[sword]='.$this->piVars['sword'];
 			$linkconf['additionalParams'] .= '&tx_kesearch_pi1[page]='.intval($previousPage);
+			$linkconf['returnLast'] = 'url';
 			$filterArray = $this->filters->getFilters();
 
 			if (is_array($this->piVars['filter'])) {
@@ -1459,6 +1462,7 @@ class tx_kesearch_lib extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			$linkconf['addQueryString'] = 1;
 			$linkconf['additionalParams'] = '&tx_kesearch_pi1[sword]='.$this->piVars['sword'];
 			$linkconf['additionalParams'] .= '&tx_kesearch_pi1[page]='.intval($nextPage);
+			$linkconf['returnLast'] = 'url';
 			$filterArray = $this->filters->getFilters();
 
 			if (is_array($this->piVars['filter'])) {
